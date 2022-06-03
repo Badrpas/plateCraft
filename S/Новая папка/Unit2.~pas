@@ -1,0 +1,44 @@
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, PlateCraft, ExtCtrls, StdCtrls;
+
+type
+  TForm2 = class(TForm)
+    Image1: TImage;
+    Timer1: TTimer;
+    Button1: TButton;
+//    procedure Timer1Timer(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+      Map : TClientMap;
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TForm2.Button1Click(Sender: TObject);
+var i,j : integer;
+begin
+  image1.Canvas.FillRect(rect(0,0,Image1.Width,Image1.Height));
+  for i := 0 to ClientHeight+1 do
+   for j := 0 to ClientWidth+1 do
+    begin
+      Image1.Canvas.TextOut(i*10,j*10,inttostr(Form2.map[i,j].ObjectID));
+      Image1.Canvas.TextOut(i*10,j*10,inttostr(Form2.map[i,j].GroundID));
+    end;
+end;
+
+end.
